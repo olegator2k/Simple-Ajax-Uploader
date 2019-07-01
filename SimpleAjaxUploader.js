@@ -692,7 +692,7 @@ ss.SimpleUpload = function( options ) {
         onComplete: function( filename, response, uploadBtn, size ) {},
         onDone: function( filename, status, textStatus, response, uploadBtn, size ) {},
         onAllDone: function() {},
-        onExtError: function( filename, extension ) {},
+        onExtError: function( filename, extension, uploadBtn ) {},
         onSizeError: function( filename, fileSize, uploadBtn ) {},
         onError: function( filename, type, status, statusText, response, uploadBtn, size ) {},
         startXHR: function( filename, fileSize, uploadBtn ) {},
@@ -2191,7 +2191,7 @@ ss.extendObj( ss.SimpleUpload.prototype, {
             if ( !extOk ) {
                 this.removeCurrent( fileObj.id );
                 this.log( 'File extension not permitted' );
-                this._opts.onExtError.call( this, fileObj.name, fileObj.ext );
+                this._opts.onExtError.call( this, fileObj.name, fileObj.ext, fileObj.btn );
                 return false;
             }
         }
